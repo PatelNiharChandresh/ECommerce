@@ -1,0 +1,12 @@
+C:\Users\ACE\source\repos\NPatelProjects\ECommerce.Utilities\bin\Debug\net7.0\ECommerce.Utility.deps.json
+C:\Users\ACE\source\repos\NPatelProjects\ECommerce.Utilities\bin\Debug\net7.0\ECommerce.Utility.dll
+C:\Users\ACE\source\repos\NPatelProjects\ECommerce.Utilities\bin\Debug\net7.0\ECommerce.Utility.pdb
+C:\Users\ACE\source\repos\NPatelProjects\ECommerce.Utilities\obj\Debug\net7.0\ECommerce.Utility.csproj.AssemblyReference.cache
+C:\Users\ACE\source\repos\NPatelProjects\ECommerce.Utilities\obj\Debug\net7.0\ECommerce.Utility.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ACE\source\repos\NPatelProjects\ECommerce.Utilities\obj\Debug\net7.0\ECommerce.Utility.AssemblyInfoInputs.cache
+C:\Users\ACE\source\repos\NPatelProjects\ECommerce.Utilities\obj\Debug\net7.0\ECommerce.Utility.AssemblyInfo.cs
+C:\Users\ACE\source\repos\NPatelProjects\ECommerce.Utilities\obj\Debug\net7.0\ECommerce.Utility.csproj.CoreCompileInputs.cache
+C:\Users\ACE\source\repos\NPatelProjects\ECommerce.Utilities\obj\Debug\net7.0\ECommerce.Utility.dll
+C:\Users\ACE\source\repos\NPatelProjects\ECommerce.Utilities\obj\Debug\net7.0\refint\ECommerce.Utility.dll
+C:\Users\ACE\source\repos\NPatelProjects\ECommerce.Utilities\obj\Debug\net7.0\ECommerce.Utility.pdb
+C:\Users\ACE\source\repos\NPatelProjects\ECommerce.Utilities\obj\Debug\net7.0\ref\ECommerce.Utility.dll
