@@ -27,7 +27,7 @@ namespace ECommerce.Areas.Admin.Controllers
             return View(products);
         }
 
-        public IActionResult Create()
+        public IActionResult Upsert(int? id)
         {
 
            ProductVM productsVM = new()
@@ -38,12 +38,21 @@ namespace ECommerce.Areas.Admin.Controllers
                    Value = u.Id.ToString()
                }),
                Product = new Product()
-        };
-            return View(productsVM);
+            };
+
+            if(id == null || id == 0)
+            {
+                return View(productsVM);
+            }
+            else
+            {
+                productsVM.Product = repo.Get(u => u.Id ==  id);
+                return View(productsVM);
+            }
         }
 
         [HttpPost]
-        public IActionResult Create(ProductVM productVM)
+        public IActionResult Upsert(ProductVM productVM, IFormFile formFile)
         {
             
 
