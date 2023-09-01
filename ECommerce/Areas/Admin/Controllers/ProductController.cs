@@ -1,6 +1,7 @@
 ﻿using ECommerce.DataAccess.Repository;
 using ECommerce.DataAccess.Repository.IRepository;
 using ECommerce.Models;
+using ECommerce.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Identity.Client;
@@ -28,27 +29,44 @@ namespace ECommerce.Areas.Admin.Controllers
 
         public IActionResult Create()
         {
-            IEnumerable<SelectListItem> categoryList = categoryRepository.GetAll().Select(u => new SelectListItem
-            {
-                Text = u.Name,
-                Value = u.Id.ToString()
-            });
-            ViewBag.catList = categoryList;
-            return View();
+
+           ProductVM productsVM = new()
+           {
+               CategoryList = categoryRepository.GetAll().Select(u => new SelectListItem
+               {
+                   Text = u.Name,
+                   Value = u.Id.ToString()
+               }),
+               Product = new Product()
+        };
+            return View(productsVM);
         }
 
         [HttpPost]
-        public IActionResult Create(Product product)
+        public IActionResult Create(ProductVM productVM)
         {
             
 
             if(ModelState.IsValid)
             {
-                repo.Add(product);
+                repo.Add(productVM.Product);
                 repo.Save();
                 return RedirectToAction("Index");
             }
-            return View();
+            else
+            {
+                ProductVM productsVM = new()
+                {
+                    CategoryList = categoryRepository.GetAll().Select(u => new SelectListItem
+                    {
+                        Text = u.Name,
+                        Value = u.Id.ToString()
+                    }),
+                    Product = new Product()
+                };
+                return View(productsVM);
+            }
+            
         }
 
         public IActionResult Edit(int? id)
