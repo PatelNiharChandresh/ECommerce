@@ -14,11 +14,13 @@ namespace ECommerce.Areas.Admin.Controllers
 
         public IProductRepository repo;
         public ICategoryRepository categoryRepository;
+        private IWebHostEnvironment env;
 
-        public ProductController(IProductRepository repo, ICategoryRepository categoryRepository)
+        public ProductController(IProductRepository repo, ICategoryRepository categoryRepository, IWebHostEnvironment env)
         {
             this.categoryRepository = categoryRepository;
             this.repo = repo;
+            this.env = env;
         }
         public IActionResult Index()
         {
@@ -54,10 +56,26 @@ namespace ECommerce.Areas.Admin.Controllers
         [HttpPost]
         public IActionResult Upsert(ProductVM productVM, IFormFile formFile)
         {
-            
+
+            string pathToWWWRoot = env.WebRootPath;
+            string completePath = Path.Combine(pathToWWWRoot,@"images\product");
 
             if(ModelState.IsValid)
             {
+
+                if(formFile != null)
+                {
+                    string completeFileName = Guid.NewGuid().ToString() + Path.GetExtension(formFile.FileName);
+
+                    using (var fileStream = new FileStream(Path.Combine(completePath, completeFileName), FileMode.Create))
+                    {
+                        formFile.CopyTo(fileStream);
+
+                        productVM.Product.ImageURL = @"images\product" + completeFileName;
+                    }
+                }
+                
+
                 repo.Add(productVM.Product);
                 repo.Save();
                 return RedirectToAction("Index");
@@ -75,7 +93,7 @@ namespace ECommerce.Areas.Admin.Controllers
                 };
                 return View(productsVM);
             }
-            
+            return View();
         }
 
         public IActionResult Edit(int? id)

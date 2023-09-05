@@ -13,6 +13,14 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "C:\\Users\\ACE\\source\\repos\\NPatelProjects\\ECommerce\\wwwroot\\images\\product\\e34563ac-18da-4f40-ac9d-0fec2d34e24d.png",
+      "PackagePath": "staticwebassets\\images\\product\\e34563ac-18da-4f40-ac9d-0fec2d34e24d.png"
+    },
+    {
+      "Id": "C:\\Users\\ACE\\source\\repos\\NPatelProjects\\ECommerce\\wwwroot\\images\\product\\ed9854fb-451b-4da0-964e-f260ba2f648a.png",
+      "PackagePath": "staticwebassets\\images\\product\\ed9854fb-451b-4da0-964e-f260ba2f648a.png"
+    },
+    {
       "Id": "C:\\Users\\ACE\\source\\repos\\NPatelProjects\\ECommerce\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
     },

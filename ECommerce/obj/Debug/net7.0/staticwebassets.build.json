@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "4uz3cSa6JHLu01M77NYuSRSuQ8Ipdz9kegLhXaKNJVk=",
+  "Hash": "YLuWwQpT4SCpi3FYakyIyswsrmbtdvNB6YemRheSx1s=",
   "Source": "ECommerce",
   "BasePath": "_content/ECommerce",
   "Mode": "Default",
@@ -83,6 +83,40 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "C:\\Users\\ACE\\source\\repos\\NPatelProjects\\ECommerce\\wwwroot\\images\\product\\e34563ac-18da-4f40-ac9d-0fec2d34e24d.png",
+      "SourceId": "ECommerce",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\ACE\\source\\repos\\NPatelProjects\\ECommerce\\wwwroot\\",
+      "BasePath": "_content/ECommerce",
+      "RelativePath": "images/product/e34563ac-18da-4f40-ac9d-0fec2d34e24d.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\product\\e34563ac-18da-4f40-ac9d-0fec2d34e24d.png"
+    },
+    {
+      "Identity": "C:\\Users\\ACE\\source\\repos\\NPatelProjects\\ECommerce\\wwwroot\\images\\product\\ed9854fb-451b-4da0-964e-f260ba2f648a.png",
+      "SourceId": "ECommerce",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\ACE\\source\\repos\\NPatelProjects\\ECommerce\\wwwroot\\",
+      "BasePath": "_content/ECommerce",
+      "RelativePath": "images/product/ed9854fb-451b-4da0-964e-f260ba2f648a.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\product\\ed9854fb-451b-4da0-964e-f260ba2f648a.png"
     },
     {
       "Identity": "C:\\Users\\ACE\\source\\repos\\NPatelProjects\\ECommerce\\wwwroot\\js\\site.js",

@@ -4,19 +4,17 @@
 
     <div class="border p-3 mt-4">
 
+        <input asp-for="Product.Id" hidden />
+
+        
+
         <div class="row pb-2">
-            @if (Model.Product.Id == null || Model.Product.Id == 0)
-            {
-            <h2 class="text-primary">Create Product</h2>
-            }else
-            {
-            <h2 class="text-primary">Update Product</h2>
-            }
-            
+           
+            <h2 class="text-primary"> @(Model.Product.Id != 0 ? "Update" : "Create") Product</h2>
             <hr />
         </div>
 
-        <input asp-for="Product.Id" hidden />
+        
 
         <div class="mb-3 row p-1">
             <label asp-for=Product.Title class="p-0"></label>
@@ -60,13 +58,13 @@
 
         <div class="mb-3 row p-1">
             <label asp-for=Product.ImageURL class="p-0"></label>
-            <input type="file" class="form-control" />
+            <input type="file" name="formFile" class="form-control" />
         </div>
 
         <div class="row ">
 
             <div class="col-6 col-md-3">
-                @if (Model.Product.Id == null || Model.Product.Id == 0)
+                @if (Model.Product.Id == 0)
                 {
                     <button type="submit" class="btn btn-primary form-control">Create</button>
                 }
@@ -74,6 +72,7 @@
                 {
                     <button type="submit" class="btn btn-primary form-control">Update</button>
                 }
+                
             </div>
 
             <div class="col-6 col-md-3">
