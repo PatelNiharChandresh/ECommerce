@@ -57,21 +57,22 @@ namespace ECommerce.Areas.Admin.Controllers
         public IActionResult Upsert(ProductVM productVM, IFormFile formFile)
         {
 
-            string pathToWWWRoot = env.WebRootPath;
-            string completePath = Path.Combine(pathToWWWRoot,@"images\product");
+           
 
             if(ModelState.IsValid)
             {
 
                 if(formFile != null)
                 {
+                    string pathToWWWRoot = env.WebRootPath;
+                    string completePath = Path.Combine(pathToWWWRoot, @"images\product");
                     string completeFileName = Guid.NewGuid().ToString() + Path.GetExtension(formFile.FileName);
 
                     using (var fileStream = new FileStream(Path.Combine(completePath, completeFileName), FileMode.Create))
                     {
                         formFile.CopyTo(fileStream);
 
-                        productVM.Product.ImageURL = @"images\product" + completeFileName;
+                        productVM.Product.ImageURL = @"\images\product\" + completeFileName;
                     }
                 }
                 
@@ -93,7 +94,7 @@ namespace ECommerce.Areas.Admin.Controllers
                 };
                 return View(productsVM);
             }
-            return View();
+            
         }
 
         public IActionResult Edit(int? id)
