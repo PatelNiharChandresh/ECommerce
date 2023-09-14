@@ -137,19 +137,6 @@ namespace ECommerce.Areas.Admin.Controllers
             return View();
         } 
 
-        public IActionResult Delete(int? id)
-        {
-            if(id != 0 && id != null)
-            {
-                Product product = repo.Get(u => u.Id == id);
-                if(product != null)
-                {
-                    return View(product);
-                }
-            }
-            return View();
-        }
-
         [HttpPost, ActionName("Delete")]
         public IActionResult DeleteProduct(int? id)
         {
@@ -165,5 +152,38 @@ namespace ECommerce.Areas.Admin.Controllers
             }
             return View();
         }
+
+        #region API Calls
+        [HttpGet]
+        public IActionResult GetAll()
+        {
+            var products = repo.GetAll(includeProperties:"Category");
+
+            return Json(new { data = products });
+        }
+
+        [HttpDelete]
+        public IActionResult Delete(int? id)
+        {
+            var productToDelete = repo.Get(u=> u.Id == id);
+
+            if (productToDelete == null)
+            {
+                return Json(new { success = false , message = "Error while deleting." });
+            }
+            var oldPath = Path.Combine(env.WebRootPath, productToDelete.ImageURL.TrimStart('\\'));
+            if (System.IO.File.Exists(oldPath))
+            {
+                System.IO.File.Delete(oldPath);
+            }
+
+            repo.Remove(productToDelete); 
+            repo.Save();
+
+            return Json(new { success = true, message = "Deleted successfully." });
+        }
+
+        #endregion
+
     }
 }
