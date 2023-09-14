@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "tQ3Cc66i8HqFZ9ac8czkTa1FOwORkSLnDHAKFFEMDOU=",
+  "Hash": "R25EYoxxyUFuHtS4arE3IUMG+QVmVXzPFstj1E1XK0I=",
   "Source": "ECommerce",
   "BasePath": "_content/ECommerce",
   "Mode": "Default",
@@ -85,12 +85,12 @@
       "OriginalItemSpec": "wwwroot\\favicon.ico"
     },
     {
-      "Identity": "C:\\Users\\ACE\\source\\repos\\NPatelProjects\\ECommerce\\wwwroot\\images\\product\\bb534b7c-65d4-4c32-b673-b0e2f4693e75.jpg",
+      "Identity": "C:\\Users\\ACE\\source\\repos\\NPatelProjects\\ECommerce\\wwwroot\\images\\product\\382d97ec-be17-4866-abef-8b42d5c1e1e6.png",
       "SourceId": "ECommerce",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\ACE\\source\\repos\\NPatelProjects\\ECommerce\\wwwroot\\",
       "BasePath": "_content/ECommerce",
-      "RelativePath": "images/product/bb534b7c-65d4-4c32-b673-b0e2f4693e75.jpg",
+      "RelativePath": "images/product/382d97ec-be17-4866-abef-8b42d5c1e1e6.png",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -99,7 +99,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\images\\product\\bb534b7c-65d4-4c32-b673-b0e2f4693e75.jpg"
+      "OriginalItemSpec": "wwwroot\\images\\product\\382d97ec-be17-4866-abef-8b42d5c1e1e6.png"
     },
     {
       "Identity": "C:\\Users\\ACE\\source\\repos\\NPatelProjects\\ECommerce\\wwwroot\\js\\site.js",

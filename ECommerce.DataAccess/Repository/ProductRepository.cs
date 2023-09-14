@@ -22,10 +22,24 @@ namespace ECommerce.DataAccess.Repository
         {
             _context.SaveChanges();
         }
-
+        
         public void Update(Product product)
         {
-            _context.Update(product);
+            var existingProduct = _context.Products.FirstOrDefault(u => u.Id == product.Id);
+            
+            if (existingProduct != null)
+            {
+                existingProduct.ISBN = product.ISBN;
+                existingProduct.Title = product.Title;
+                existingProduct.Description = product.Description;
+                existingProduct.Author = product.Author;
+                existingProduct.Price = product.Price;
+                existingProduct.CategoryId = product.CategoryId;
+                if(product.ImageURL != null)
+                {
+                    existingProduct.ImageURL = product.ImageURL;
+                }
+            }
         }
     }
 }
