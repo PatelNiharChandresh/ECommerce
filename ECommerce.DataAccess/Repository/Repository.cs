@@ -19,22 +19,37 @@ namespace ECommerce.DataAccess.Repository
         {
             _context = context;
             _dbSet = _context.Set<T>();
+            _context.Products.Include(u => u.Category);
         }
         public void Add(T item)
         {
             _dbSet.Add(item);
         }
 
-        public T Get(Expression<Func<T, bool>> filter)
+        public T Get(Expression<Func<T, bool>> filter, string? includeProperties = null)
         {
             IQueryable<T> query = _dbSet;
             query = query.Where(filter);
+            if (!string.IsNullOrEmpty(includeProperties))
+            {
+                foreach (var prop in includeProperties.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+                {
+                    query = query.Include(prop);
+                }
+            }
             return query.FirstOrDefault();
         }
 
-        public IEnumerable<T> GetAll()
+        public IEnumerable<T> GetAll( string? includeProperties = null )
         {
             IQueryable<T> query = _dbSet;
+            if(!string.IsNullOrEmpty(includeProperties))
+            {
+                foreach (var prop in includeProperties.Split(new char[] {','},StringSplitOptions.RemoveEmptyEntries))
+                {
+                    query = query.Include(prop);
+                }
+            }
             return query.ToList();
         }
 

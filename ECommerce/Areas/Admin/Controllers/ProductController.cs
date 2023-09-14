@@ -24,7 +24,7 @@ namespace ECommerce.Areas.Admin.Controllers
         }
         public IActionResult Index()
         {
-            var products = repo.GetAll();
+            var products = repo.GetAll(includeProperties:"Category");
 
             return View(products);
         }
