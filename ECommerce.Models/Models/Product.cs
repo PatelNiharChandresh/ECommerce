@@ -29,9 +29,9 @@ namespace ECommerce.Models
         
         public int CategoryId { get; set; }
 
-        /*[ValidateNever]
+        [ValidateNever]
         [ForeignKey("CategoryId")]
-        public Category Category { get; set; }*/
+        public Category Category { get; set; }
 
         [ValidateNever]
         public string ImageURL { get; set; }

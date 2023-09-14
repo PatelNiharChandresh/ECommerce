@@ -54,30 +54,45 @@ namespace ECommerce.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public IActionResult Upsert(ProductVM productVM, IFormFile formFile)
+        public IActionResult Upsert(ProductVM productVM, IFormFile? formFile)
         {
 
-           
-
-            if(ModelState.IsValid)
+            if (ModelState.IsValid)
             {
 
-                if(formFile != null)
+
+                if (formFile != null)
                 {
                     string pathToWWWRoot = env.WebRootPath;
                     string completePath = Path.Combine(pathToWWWRoot, @"images\product");
                     string completeFileName = Guid.NewGuid().ToString() + Path.GetExtension(formFile.FileName);
 
+                    if (!string.IsNullOrEmpty(productVM.Product.ImageURL))
+                    {
+                        string oldPath = Path.Combine(pathToWWWRoot, productVM.Product.ImageURL.TrimStart('\\'));
+                        if (System.IO.File.Exists(oldPath))
+                        {
+                            System.IO.File.Delete(oldPath);
+                        }
+                    }
                     using (var fileStream = new FileStream(Path.Combine(completePath, completeFileName), FileMode.Create))
                     {
                         formFile.CopyTo(fileStream);
-
-                        productVM.Product.ImageURL = @"\images\product\" + completeFileName;
                     }
+                    productVM.Product.ImageURL = @"\images\product\" + completeFileName;
                 }
-                
+               
+                    if (productVM.Product.Id == 0)
+                    {
+                        repo.Add(productVM.Product);
+                    }
 
-                repo.Add(productVM.Product);
+
+                    if (productVM.Product.Id != 0)
+                    {
+                        repo.Update(productVM.Product);
+                    }
+                
                 repo.Save();
                 return RedirectToAction("Index");
             }
