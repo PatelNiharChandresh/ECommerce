@@ -1,4 +1,4 @@
-var dataTable
+var dataTablegit
 $(document).ready(function () { loadDataTable(); });
 
 function loadDataTable() {

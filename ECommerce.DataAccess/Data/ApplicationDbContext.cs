@@ -1,11 +1,11 @@
 ﻿
 using ECommerce.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using System.Net.Http.Headers;
 
 namespace ECommerce.DataAccess.Data
 {
-    public class ApplicationDbContext : DbContext
+    public class ApplicationDbContext : IdentityDbContext
     {
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
@@ -17,6 +17,7 @@ namespace ECommerce.DataAccess.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
 
+            base.OnModelCreating(modelBuilder); 
             
             modelBuilder.Entity<Category>().HasData(new Category { Id = 1 , Name = "Books", DisplayOrder = 3},
                 new Category { Id = 2, Name = "Clothes", DisplayOrder = 1 },
