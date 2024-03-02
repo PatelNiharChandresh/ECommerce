@@ -10,6 +10,8 @@ using System.Text;
 using System.Text.Encodings.Web;
 using System.Threading;
 using System.Threading.Tasks;
+using ECommerce.DataAccess.Repository;
+using ECommerce.DataAccess.Repository.IRepository;
 using ECommerce.Models.Models;
 using ECommerce.Utility;
 using Microsoft.AspNetCore.Authentication;
@@ -34,6 +36,7 @@ namespace ECommerce.Areas.Identity.Pages.Account
         private readonly IUserEmailStore<IdentityUser> _emailStore;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
+        private ICompanyRepository companyRepo;
 
         public RegisterModel(
             UserManager<IdentityUser> userManager,
@@ -41,8 +44,10 @@ namespace ECommerce.Areas.Identity.Pages.Account
             RoleManager<IdentityRole> roleManager,
             SignInManager<IdentityUser> signInManager,
             ILogger<RegisterModel> logger,
-            IEmailSender emailSender)
+            IEmailSender emailSender,
+            ICompanyRepository company)
         {
+            companyRepo = company;
             _userManager = userManager;
             _userStore = userStore;
             _emailStore = GetEmailStore();
@@ -116,6 +121,9 @@ namespace ECommerce.Areas.Identity.Pages.Account
 
             public string? PostalCode { get; set; }
             public string? PhoneNumber { get; set; }
+            public int? CompanyId { get; set; }
+            [ValidateNever]
+            public IEnumerable<SelectListItem> companyList { get; set; }
         }
 
 
@@ -136,6 +144,11 @@ namespace ECommerce.Areas.Identity.Pages.Account
                 {
                     Text = i,
                     Value = i
+                }),
+                companyList = companyRepo.GetAll().Select(x => new SelectListItem
+                {
+                    Text= x.Name,
+                    Value = x.Id.ToString()
                 })
             };
 
@@ -159,6 +172,11 @@ namespace ECommerce.Areas.Identity.Pages.Account
                 user.State = Input.State;
                 user.PhoneNumber = Input.PhoneNumber;
                 var result = await _userManager.CreateAsync(user, Input.Password);
+
+                if(Input.Role == SD.Role_Company)
+                {
+                    user.CompanyId = Input.CompanyId;
+                }
 
                 if (result.Succeeded)
                 {
