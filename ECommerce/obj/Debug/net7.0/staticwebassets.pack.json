@@ -17,6 +17,10 @@
       "PackagePath": "staticwebassets\\images\\product\\47b4f1e1-2bc5-41be-8e6f-d36739133ff5.png"
     },
     {
+      "Id": "C:\\Users\\ACE\\source\\repos\\NPatelProjects\\ECommerce\\wwwroot\\js\\company.js",
+      "PackagePath": "staticwebassets\\js\\company.js"
+    },
+    {
       "Id": "C:\\Users\\ACE\\source\\repos\\NPatelProjects\\ECommerce\\wwwroot\\js\\product.js",
       "PackagePath": "staticwebassets\\js\\product.js"
     },

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "k49Gvuj3V3tAtZu8WRgsgObxs6qX3vGeYPo4tz3o9dU=",
+  "Hash": "EP+u5LJGCP+F+Dlj4DHjuVte1NJ8eexeRssI6pcurQo=",
   "Source": "ECommerce",
   "BasePath": "_content/ECommerce",
   "Mode": "Default",
@@ -1120,6 +1120,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\product\\47b4f1e1-2bc5-41be-8e6f-d36739133ff5.png"
+    },
+    {
+      "Identity": "C:\\Users\\ACE\\source\\repos\\NPatelProjects\\ECommerce\\wwwroot\\js\\company.js",
+      "SourceId": "ECommerce",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\ACE\\source\\repos\\NPatelProjects\\ECommerce\\wwwroot\\",
+      "BasePath": "_content/ECommerce",
+      "RelativePath": "js/company.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\company.js"
     },
     {
       "Identity": "C:\\Users\\ACE\\source\\repos\\NPatelProjects\\ECommerce\\wwwroot\\js\\product.js",

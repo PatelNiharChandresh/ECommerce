@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@using ECommerce.Areas.Identity
+@using ECommerce.Models.Models
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -21,7 +24,7 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
+                    <ul class="navbar-nav me-auto">
                         <li class="nav-item">
                             <a class="nav-link " asp-area="Customer" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
@@ -29,24 +32,33 @@
                             <a class="nav-link " asp-area="Customer" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
                         
+                        @*@if(@User.IsInRole(SD.Role_Admin)){*@
 
-                        <div class="dropdown">
-                            <a class="btn btn-dark bg-transparent dropdown-toggle text-white-50" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Content Management
-                            </a>
+                            <div class="dropdown">
+                                <a class="btn btn-dark bg-transparent dropdown-toggle text-white-50" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Content Management
+                                </a>
 
-                            <ul class="dropdown-menu">
-                                <li class="nav-item">
-                                    <a class="nav-link text-dark " asp-area="Admin" asp-controller="Category" asp-action="Index">Categories</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link text-dark " asp-area="Admin" asp-controller="Product" asp-action="Index">Products</a>
-                                </li>
-                                <li><a class="dropdown-item" href="#">Something else here</a></li>
-                            </ul>
-                        </div>
+                                <ul class="dropdown-menu">
+                                    <li class="nav-item">
+                                        <a class="nav-link text-dark " asp-area="Admin" asp-controller="Category" asp-action="Index">Categories</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link text-dark " asp-area="Admin" asp-controller="Company" asp-action="Index">Company</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link text-dark " asp-area="Admin" asp-controller="Product" asp-action="Index">Products</a>
+                                    </li>
+                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                </ul>
+                            </div>
+
+                        @*}*@
+
+                        
 
                     </ul>
+                    <partial name="_LoginPartial"/>
                 </div>
             </div>
         </nav>

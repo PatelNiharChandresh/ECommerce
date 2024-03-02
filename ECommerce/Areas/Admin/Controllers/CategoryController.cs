@@ -4,10 +4,14 @@ using ECommerce.Models;
 using Microsoft.AspNetCore.Mvc;
 using ECommerce.DataAccess.Repository;
 using ECommerce.DataAccess.Repository.IRepository;
+using ECommerce.Utility;
+using Microsoft.AspNetCore.Authorization;
+using System.Data;
 
 namespace ECommerce.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    //[Authorize(Roles = SD.Role_Admin)]
     public class CategoryController : Controller
     {
         private readonly ICategoryRepository repo
