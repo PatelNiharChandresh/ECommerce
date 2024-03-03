@@ -50,9 +50,19 @@ namespace ECommerce.DataAccess.Repository
             return query.FirstOrDefault();
         }
 
-        public IEnumerable<T> GetAll( string? includeProperties = null )
+        public IEnumerable<T> GetAll(Expression<Func<T, bool>>? filter = null, string? includeProperties = null )
         {
-            IQueryable<T> query = _dbSet;
+            IQueryable<T> query;
+
+            if(filter != null)
+            {
+                query = _dbSet.Where(filter);
+            }
+            else
+            {
+                query = _dbSet;
+            }
+
             if(!string.IsNullOrEmpty(includeProperties))
             {
                 foreach (var prop in includeProperties.Split(new char[] {','},StringSplitOptions.RemoveEmptyEntries))
