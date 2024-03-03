@@ -1,7 +1,10 @@
 ﻿using ECommerce.DataAccess.Repository.IRepository;
 using ECommerce.Models;
+using ECommerce.Models.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using System.Security.Claims;
 
 namespace ECommerce.Areas.Customer.Controllers
 {
@@ -10,11 +13,13 @@ namespace ECommerce.Areas.Customer.Controllers
     {
 
         private IProductRepository productRepository;
+        private IShoppingCartRepository scRepo;
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger, IProductRepository repo)
+        public HomeController(ILogger<HomeController> logger, IProductRepository repo, IShoppingCartRepository shoppingCart)
         {
             this.productRepository = repo;
+            this.scRepo = shoppingCart;
             _logger = logger;
         }
 
@@ -26,8 +31,48 @@ namespace ECommerce.Areas.Customer.Controllers
 
         public IActionResult Details(int id)
         {
-            Product product = productRepository.Get(u=>u.Id == id, includeProperties:"Category");
-            return View(product);
+            ShoppingCart cart = new()
+            {
+                Product = productRepository.Get(u => u.Id == id, includeProperties: "Category"),
+                Count = 1,
+                ProductId = id
+            };
+           
+            return View(cart);
+        }
+        [HttpPost]
+        [Authorize]
+        public IActionResult Details(ShoppingCart cart) {
+            
+
+            
+            var claimsIdentity = (ClaimsIdentity)User.Identity;
+            var userId = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier).Value;
+
+
+            ShoppingCart cartFromDb = scRepo.Get(u => u.ProductId == cart.ProductId && u.UserId == userId);
+
+            if(cartFromDb != null)
+            {
+                //cart already exist, just increase count and update
+                cartFromDb.Count += cart.Count;
+                scRepo.Update(cartFromDb);
+                scRepo.Save();
+                TempData["success"] = "Count updated successfully.";
+                return RedirectToAction(nameof(Index));
+            }
+            else
+            {
+                //this is a new cart entry, create a new entry in database
+                cart.Id = 0;
+                cart.UserId = userId;
+                scRepo.Add(cart);
+                scRepo.Save();
+                TempData["success"] = "Added to cart successfully.";
+                return RedirectToAction(nameof(Index));
+            }
+
+            
         }
         public IActionResult Privacy()
         {

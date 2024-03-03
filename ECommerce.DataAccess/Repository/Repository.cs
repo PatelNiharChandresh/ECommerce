@@ -26,9 +26,19 @@ namespace ECommerce.DataAccess.Repository
             _dbSet.Add(item);
         }
 
-        public T Get(Expression<Func<T, bool>> filter, string? includeProperties = null)
+        public T Get(Expression<Func<T, bool>> filter, string? includeProperties = null, bool tracked = false)
         {
-            IQueryable<T> query = _dbSet;
+            IQueryable<T> query;
+
+            if (tracked)
+            {
+                query = _dbSet;
+            }
+            else
+            {
+                query = _dbSet.AsNoTracking();
+            }
+
             query = query.Where(filter);
             if (!string.IsNullOrEmpty(includeProperties))
             {
