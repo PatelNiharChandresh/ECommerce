@@ -23,5 +23,7 @@ namespace ECommerce.Models.Models
         [ForeignKey(nameof(ProductId))]
         [ValidateNever]
         public Product Product { get; set; }
+        
+        
     }
 }
