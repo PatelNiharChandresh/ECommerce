@@ -22,6 +22,8 @@ namespace ECommerce.Models.Models
 
         public string? PostalCode { get; set;}
 
+        public string? PhoneNumber { get; set; }
+
         public int? CompanyId { get; set;}
         [ForeignKey(nameof(CompanyId))]
         [ValidateNever]
