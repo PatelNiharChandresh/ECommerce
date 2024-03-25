@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,7 +27,7 @@ namespace ECommerce.Models.Models
         public string PaymentStatus { get; set; }
 
         public string TrackingNumber { get; set; }
-
+        [ValidateNever]
         public string Carrier { get; set; }
         public string PaymentIntentId { get; set; }
 

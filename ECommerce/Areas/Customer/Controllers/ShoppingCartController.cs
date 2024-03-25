@@ -123,19 +123,21 @@ namespace ECommerce.Areas.Customer.Controllers
 
             scVM.OrderHeader.ApplicationUserId = uId;
 
-            scVM.OrderHeader.ApplicationUser = applicationUserRepository.Get(u => u.Id == uId);
+            ApplicationUser user = applicationUserRepository.Get(u => u.Id == uId);
 
             scVM.OrderHeader.OrderDate = DateTime.Now;
 
             scVM.OrderHeader.OrderTotal = CalculateOrderTotal(scVM.ShoppingCartList);
 
-            if(scVM.OrderHeader.ApplicationUser.CompanyId.GetValueOrDefault() == 0)
+            if(user.CompanyId.GetValueOrDefault() == 0)
             {
+                scVM.OrderHeader.Name = "hello";
                 scVM.OrderHeader.OrderStatus = SD.Status_Pending;
                 scVM.OrderHeader.PaymentStatus = SD.Payment_Status_Pending;
 
             }else
             {
+				scVM.OrderHeader.Name = "hello";
 				scVM.OrderHeader.OrderStatus = SD.Status_Approved;
 				scVM.OrderHeader.PaymentStatus = SD.Payment_Status_Delayed_Payment;
 			}
@@ -154,9 +156,18 @@ namespace ECommerce.Areas.Customer.Controllers
                 orderDetailRepository.Add(orderDetail);
                 orderDetailRepository.Save();
             }
-
-			return View(scVM);
+            if (user.CompanyId.GetValueOrDefault() == 0)
+            {
+                // it is a regular customer account and we need to capture payment
+                // add stripe logic here
+            }
+			return RedirectToAction(nameof(OrderConfirmation), new {id = scVM.OrderHeader.Id});
 		}
+
+        public IActionResult OrderConfirmation(int id)
+        {
+            return View(id);
+        }
 
 
 		private double CalculateOrderTotal(IEnumerable<ShoppingCart> shoppingCart)
