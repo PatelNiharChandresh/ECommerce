@@ -29,5 +29,32 @@ namespace ECommerce.DataAccess.Repository
         {
             _context.Update(orderHeader);
         }
-    }
+
+		public void UpdateStatus(int id, string orderStatus, string? paymentStatus = null)
+		{
+			var orderHeaderDB = _context.OrderHeaders.FirstOrDefault(x => x.Id == id);
+            if (!string.IsNullOrEmpty(orderStatus))
+            {
+                orderHeaderDB.OrderStatus = orderStatus;
+                if (!string.IsNullOrEmpty(paymentStatus))
+                {
+                    orderHeaderDB.PaymentStatus = paymentStatus;
+                }
+            }
+		}
+
+		public void UpdateStripePaymentID(int id, string sessionId, string paymentIntentId)
+		{
+			var orderHeaderDB = _context.OrderHeaders.FirstOrDefault(x => x.Id == id);
+            if (!string.IsNullOrEmpty(sessionId))
+            {
+                orderHeaderDB.SessionId = sessionId;
+            }
+
+            if (!string.IsNullOrEmpty(paymentIntentId)) {
+                orderHeaderDB.PaymentIntentId = paymentIntentId;
+                orderHeaderDB.PaymentDate = DateTime.Now;
+            }
+		}
+	}
 }

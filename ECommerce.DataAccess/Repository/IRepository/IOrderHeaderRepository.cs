@@ -12,5 +12,8 @@ namespace ECommerce.DataAccess.Repository.IRepository
     {
         void Update(OrderHeader orderHeader);
         void Save();
+        void UpdateStatus(int id, string orderStatus, string? paymentStatus = null);
+
+        void UpdateStripePaymentID(int id, string sessionId, string paymentIntentId);
     }
 }
